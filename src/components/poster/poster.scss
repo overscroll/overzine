@@ -1,0 +1,113 @@
+body {
+    .overzine-opener {
+        background-color: #E9E9E9;
+        width: 500px;
+        height: 700px;
+        position: relative;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+        &__headline {
+            color:#000;
+        }
+
+        &__layer1 { display: block; position: absolute; width: 100%; height: 100%; }
+        &__layer2 { display: block; position: absolute; width: 100%; height: 100%; }
+        &__layer3 { display: block; position: absolute; width: 100%; height: 100%; }
+
+        &__image { position: absolute; right: 0; bottom: 0; z-index: 5; width: 100%; }
+        &__text {
+            display: block;
+            position: absolute;
+            width: 100%;
+            z-index:10;
+            right: 25px;
+            bottom: 0px;
+            left: 35px;
+            top: 15%;
+            justify-content: start;
+        }
+        &__headline {
+            z-index: 9;
+            margin-top: 15px;
+            font-family: 'Neutral';
+            font-weight: 600;
+            line-height: 120%;
+            font-size: 2.2em;
+        }
+        &__kicker {
+            z-index: 9;
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 100%;
+            text-transform: uppercase;
+        }
+        &--background-gradient {
+            .overzine-opener__layer2{
+                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eaeaea+0,c9c9c9+100&0.99+0,0.02+100 */
+                //background: -webkit-radial-gradient(60% bottom, ellipse cover, rgba(155, 155, 155, 0.35) 0%,rgba(155,155,155,0.02) 100%); /* Chrome10-25,Safari5.1-6 */
+            }
+        }
+
+
+
+        /* THEME: ZINE1 */
+        &--background-zine1 {
+            .overzine-opener__layer1{
+                display: block;
+                width: 100%;
+                height: 100%;
+                mix-blend-mode: darken;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index:3;
+            }
+            
+            .overzine-opener__layer2{
+                background: url('/images/pattern/zine1b.jpg');
+                background-size: 100%;
+                z-index:1;
+            }
+            .overzine-opener__layer3 {
+                display: block;
+                width: 100%;
+                height: 100%;
+                mix-blend-mode: lighten;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index:4;
+            }
+            
+        }
+
+        &--image-pngduotone {
+
+            .overzine-opener__imagelayer1{
+                display: block; position: absolute; width: 100%; height: 100%;
+                z-index: 4;
+            }
+            .overzine-opener__imagelayer2{
+                display: block; position: absolute; width: 100%; height: 100%;
+                z-index: 6;
+                content: '';
+                display: block;
+                width: 100%;
+                height: 100%;
+                mix-blend-mode: screen;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .overzine-opener__image{
+                mix-blend-mode: multiply;
+                -webkit-filter: grayscale(100%) contrast(1.0);
+            }
+        }
+
+    }
+}
