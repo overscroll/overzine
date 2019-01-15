@@ -1,24 +1,47 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { withKnobs, text, boolean, number, color } from '@storybook/addon-knobs';
 
-import Task from './opener';
+import Opener from './opener';
 
-export const task = {
+export const article = {
   id: '1',
-  title: 'Test Task',
-  state: 'TASK_INBOX',
-  updatedAt: new Date(2018, 0, 1, 9, 0),
+  kicker: 'yooo',
+  headline: 'Test Task',
+  theme: 'default',
+  backgroundColor: '#96D7CD',
+  colorContrast: '#F46772',
+  alignment: 'left',
+  image: '/images/objects/mask.png'
 };
+
+const stories = storiesOf('opener', module);
+stories.addDecorator(withKnobs);
 
 export const actions = {
   onPinTask: action('onPinTask'),
   onArchiveTask: action('onArchiveTask'),
 };
 
-storiesOf('opener', module)
-  .add('default', () => 
-    <Task task={task} {...actions} />
+stories.add('standard', () => 
+    <Opener content={article} {...actions} />
    )
-  .add('pinned', () => <Task task={{ ...task, state: 'TASK_PINNED' }} {...actions} />)
-  .add('archived', () => <Task task={{ ...task, state: 'TASK_ARCHIVED' }} {...actions} />);
+  .add('pngduotone-on-zine', () => <Opener content={{ ...article, 
+    headline: 'Hello :)', 
+    backgroundEffect: 'zine1', 
+    backgroundColor: color('BackgroundColor', '#FEE3DE', ''), 
+    backgroundColor2: color('BackgroundColor2', '#EAC6D3', ''), 
+    imageEffect: 'pngduotone', 
+    imageColor: '#00FFD1', 
+    imageColor2: '#11174D' 
+   }} {...actions} />)
+  .add('png-on-zine', () => <Opener content={{ ...article, 
+    backgroundColor: color('BackgroundColor', '#FEE3DE', ''), 
+    backgroundColor2: color('BackgroundColor2', '#EAC6D3', ''), 
+
+    backgroundEffect: 'zine1', 
+  
+  }} {...actions} />)
+  .add('black', () => <Opener content={{ ...article, state: 'TASK_ARCHIVED', backgroundColor: '#232323', image: '/images/objects/photo.png' }} {...actions} />)
+  .add('black2', () => <Opener content={{ ...article, state: 'TASK_ARCHIVED', backgroundColor: '#232323', backgroundColor2: '#C5C5C5',  image: '/images/objects/photo.png' }} {...actions} />);

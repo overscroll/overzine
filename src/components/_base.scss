@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Neutral";
+  font-weight: 300;
+  src: url('/fonts/NeutralStd-Regular.otf');
+}
+@font-face {
+  font-family: "Neutral";
+  font-weight: 500;
+  src: url('/fonts/NeutralStd-Medium.otf');
+}
+@font-face {
+  font-family: "Neutral";
+  font-weight: 600;
+  src: url('/fonts/NeutralStd-Bold.otf');
+}
+
+// Colors
+// Spacing
+$s-size: 1.2rem;
+$m-size: 1.5rem;
+$l-size: 3.2rem;
+$xl-size: 4.8rem;
+$desktop-breakpoint: 45rem;
+$content-width: 660px;
+
+$global-mq-breakpoints: (
+  mobile: 'screen and (max-width: 48em)', // until 768px (iPad)
+  desktop: 'screen and (min-width: 48.0625em)', // 769px and larger
+);
+
+@mixin mq($mq-name, $breakpoints: $global-mq-breakpoints) {
+  $breakpoint-condition: map-get($global-mq-breakpoints, $mq-name);
+
+  @if ($breakpoint-condition) {
+    @media #{$breakpoint-condition} {
+      @content;
+    }
+  }
+
+  @else {
+    @error "Breakpoint ‘#{$mq-name}’ does not exist.";
+  }
+}
+
+html {
+    font-size: 62.5%;
+}
+  
+body {
+font-family: "Neutral", Helvetica, Arial, sans-serif;
+font-weight: 300;
+font-size: $m-size;
+line-height: 2.1rem;
+}
+h1, h2, h3, h4, p {
+margin:0; padding:0;
+}
