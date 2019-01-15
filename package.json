@@ -12,11 +12,8 @@
     "style-loader": "^0.23.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public"
+    "start": "start-storybook -p 9009 -s public",
+    "build": "build-storybook -c .storybook"
   },
   "eslintConfig": {
     "extends": "react-app"
