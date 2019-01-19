@@ -31,7 +31,18 @@
     "@storybook/addon-options": "^4.0.8",
     "@storybook/addons": "^4.0.7",
     "@storybook/react": "^4.0.7",
+    "autoprefixer": "^9.4.5",
     "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.4"
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.4",
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-compat": "^2.6.3",
+    "eslint-plugin-no-storage": "^1.0.2",
+    "stylelint": "^9.10.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-no-unsupported-browser-features": "^3.0.2",
+    "stylelint-order": "^2.0.0",
+    "stylelint-selector-bem-pattern": "^2.0.0"
   }
 }

@@ -1,0 +1,64 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-selector-bem-pattern",
+    "stylelint-no-unsupported-browser-features",
+    "stylelint-order"
+  ],
+  "rules": {
+    "max-nesting-depth": [4, { "ignoreAtRules": ["include", "supports"] }],
+    "order/properties-order": [
+      "position", "z-index", "top", "right", "bottom", "left",
+      "display", "flex", "overflow",
+      "width", "max-width", "height",
+      "box-sizing",
+      "margin", "padding",
+      "background", "color", "border",
+      "font-family", "font-size", "font-weight", "line-height",
+      "white-space", "text-align", "vertical-align", "text-decoration", "text-transform", "cursor",
+      "transform", "animation", "transition"
+    ],
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "browsers": [
+          "> 5%",
+          "> 5% in DE",
+          "last 2 versions",
+          "Firefox ESR",
+          "Android >= 4.1",
+          "not op_mini all",
+          "not ie <= 9"
+        ],
+        "ignore": [
+          "rem",
+          "flexbox",
+          "multicolumn",
+          "background-img-opts",
+          "calc",
+          "transforms3d",
+          "css-filters",
+          "css-featurequeries",
+          "viewport-units",
+          "css-appearance",
+          "outline",
+          "css-masks",
+          "object-fit",
+          "pointer-events",
+          "will-change",
+          "css-resize",
+          "css-touch-action",
+          "pointer",
+          "css-clip-path",
+          "border-image",
+          "css3-cursors",
+          "font-unicode-range",
+          "css-sticky",
+          "text-decoration",
+          "user-select-none"
+        ],
+        "severity": "warning"
+      }
+    ]
+  }
+}

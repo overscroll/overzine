@@ -14,11 +14,11 @@ export const article = {
   colorContrast: '#F46772',
   alignment: 'left',
   image: '/images/objects/mask.png',
-  imageColor: '#00FFD1', 
+  imageColor: '#00FFD1',
   imageColor2: '#11174D'
 };
 
-const stories = storiesOf('Openersvg', module);
+const stories = storiesOf('Poster', module);
 stories.addDecorator(withKnobs);
 
 export const actions = {
@@ -26,50 +26,50 @@ export const actions = {
   onArchiveTask: action('onArchiveTask'),
 };
 
-stories.add('standard', () => 
+stories.add('standard', () =>
     <Poster content={article} {...actions} />
    )
-  .add('png-on-zine', () => <Poster content={{ ...article, 
-    backgroundColor: color('BackgroundColor', '#FEE3DE', ''), 
-    backgroundColor2: color('BackgroundColor2', '#EAC6D3', ''), 
-    background: 'zine1', 
-    backgroundEffect: 'duotone', 
-  
+  .add('png-on-zine', () => <Poster content={{ ...article,
+    backgroundColor: color('BackgroundColor', '#FEE3DE', ''),
+    backgroundColor2: color('BackgroundColor2', '#EAC6D3', ''),
+    background: 'zine1',
+    backgroundEffect: 'duotone',
+
   }} {...actions} />)
-  .add('pngduotone-on-zine', () => 
-  <Poster content={{ ...article, 
-    headline: 'Hello :)', 
-    background: 'zine1', 
-    backgroundEffect: 'duotone-hard', 
-    backgroundColor: color('BackgroundColor', '#FEE3DE', ''), 
-    backgroundColor2: color('BackgroundColor2', '#EAC6D3', ''), 
-    imageEffect: 'duotone', 
-    imageColor: '#00FFD1', 
-    imageColor2: '#11174D' 
+  .add('pngduotone-on-zine', () =>
+  <Poster content={{ ...article,
+    headline: 'Hello :)',
+    background: 'zine1',
+    backgroundEffect: 'duotone-hard',
+    backgroundColor: color('BackgroundColor', '#FEE3DE', ''),
+    backgroundColor2: color('BackgroundColor2', '#EAC6D3', ''),
+    imageEffect: 'duotone',
+    imageColor: '#00FFD1',
+    imageColor2: '#11174D'
  }} {...actions} />)
- .add('bg1', () => 
- <Poster content={{ ...article, 
-   headline: 'Hello :)', 
-   background: '/images/eyes.jpg', 
-   backgroundColor: color('BackgroundColor', '#FEE3DE', ''), 
-   image: '', 
+ .add('bg1', () =>
+ <Poster content={{ ...article,
+   headline: 'Hello :)',
+   background: '/images/eyes.jpg',
+   backgroundColor: color('BackgroundColor', '#FEE3DE', ''),
+   image: '',
 }} {...actions} />)
-.add('bg1-duotone', () => 
-<Poster content={{ ...article, 
-  headline: 'Hello :)', 
-  background: '/images/eyes.jpg', 
-  backgroundEffect: 'duotone', 
-  backgroundColor: color('BackgroundColor', '#F6F906', ''), 
-  backgroundColor2: color('BackgroundColor2', '#DE0855', ''), 
-  image: '', 
+.add('bg1-duotone', () =>
+<Poster content={{ ...article,
+  headline: 'Hello :)',
+  background: '/images/eyes.jpg',
+  backgroundEffect: 'duotone',
+  backgroundColor: color('BackgroundColor', '#F6F906', ''),
+  backgroundColor2: color('BackgroundColor2', '#DE0855', ''),
+  image: '',
 }} {...actions} />)
-.add('bg2', () => 
-<Poster content={{ ...article, 
-  headline: 'Hello :)', 
-  background: '/images/snapchat.jpg', 
-  backgroundColor: color('BackgroundColor', '#00091F', ''),  
+.add('bg2', () =>
+<Poster content={{ ...article,
+  headline: 'Hello :)',
+  background: '/images/snapchat.jpg',
+  backgroundColor: color('BackgroundColor', '#00091F', ''),
   colorContrast: color('contrast', '#FEFF20'),
-  image: '', 
+  image: '',
 }} {...actions} />)
   .add('black', () => <Poster content={{ ...article, state: 'TASK_ARCHIVED', backgroundColor: '#232323', image: '/images/objects/photo.png' }} {...actions} />)
   .add('black2', () => <Poster content={{ ...article, state: 'TASK_ARCHIVED', backgroundColor: '#232323', backgroundColor2: '#C5C5C5',  image: '/images/objects/photo.png' }} {...actions} />)
