@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean, number, color } from '@storybook/addon-knobs';
 
-import Poster from './Poster';
+import Poster from '../Poster/Poster';
 
 export const article = {
   id: '1',
@@ -18,7 +18,7 @@ export const article = {
   imageColor2: '#11174D'
 };
 
-const stories = storiesOf('Poster', module);
+const stories = storiesOf('Article', module);
 stories.addDecorator(withKnobs);
 
 export const actions = {
