@@ -1,24 +1,31 @@
 @font-face {
-  font-family: "Neutral";
+  font-family: 'Inter';
+  font-style:  normal;
   font-weight: 300;
-  src: url('/fonts/NeutralStd-Regular.otf');
+  src: url('/fonts/InterUi/Inter-Medium.woff2') format('woff2'),
+       url('/fonts/InterUi/Inter-Medium.woff') format("woff");
 }
 @font-face {
-  font-family: "Neutral";
+  font-family: 'Inter';
+  font-style:  normal;
   font-weight: 500;
-  src: url('/fonts/NeutralStd-Medium.otf');
+  src: url('/fonts/InterUi/Inter-SemiBold.woff2') format('woff2'),
+       url('/fonts/InterUi/Inter-SemiBold.woff') format("woff");
 }
+
 @font-face {
-  font-family: "Neutral";
+  font-family: 'Inter';
+  font-style:  bold;
   font-weight: 600;
-  src: url('/fonts/NeutralStd-Bold.otf');
+  src: url('/fonts/InterUi/Inter-Bold.woff2') format('woff2'),
+       url('/fonts/InterUi/Inter-Bold.woff') format("woff");
 }
 
 // Colors
 // Spacing
 $s-size: 1.2rem;
 $m-size: 1.5rem;
-$l-size: 3.2rem;
+$l-size: 4.5rem;
 $xl-size: 4.8rem;
 $desktop-breakpoint: 45rem;
 $content-width: 660px;
@@ -47,10 +54,10 @@ html {
 }
   
 body {
-font-family: "Neutral", Helvetica, Arial, sans-serif;
-font-weight: 300;
-font-size: $m-size;
-line-height: 2.1rem;
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: $m-size;
+  line-height: $m-size*2;
 }
 h1, h2, h3, h4, p {
 margin:0; padding:0;
