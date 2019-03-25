@@ -1,0 +1,46 @@
+.overzine-frontpage {
+    background: url('/images/frontpage_background.jpg')  left center ;
+    background-size: 130%;
+    background-color: #000000;
+    color:#fff;
+    width: 100%;
+    height: 80%;
+    min-height: 700px;
+    position: relative;
+
+    &__headline {
+        font-size: $l-size;
+        line-height: $s-size*3.5;
+    }
+    &__subline {
+        font-weight: bold;
+        letter-spacing: 0.1rem;
+        font-size: $s-size;
+        line-height: $s-size*3.5;
+    }
+    &__inner {
+        top: 200px;
+        left: 16%;
+        display: block;
+        position: absolute;
+    }
+    &__geviert::before {
+        content: " ";
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        position: relative;
+        display: inline-block;
+        margin-right: 8px;
+        margin-bottom: 3px;
+    }
+    &__intro{
+        width: 430px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    &__emoji{
+        font-size: 20px;
+    }
+
+}
