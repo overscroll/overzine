@@ -1,7 +1,10 @@
 {
-  "name": "overzine",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@overscroll/overzine",
+  "version": "0.0.1",
+  "description": "Collection of components for a online zine ",
+  "private": false,
+  "author": "Tobias Block <hello@overscroll.com>",
+  "license": "MIT",
   "dependencies": {
     "css-loader": "^1.0.1",
     "node-sass": "^4.10.0",
@@ -44,5 +47,14 @@
     "stylelint-no-unsupported-browser-features": "^3.0.2",
     "stylelint-order": "^2.0.0",
     "stylelint-selector-bem-pattern": "^2.0.0"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/overscroll/overzine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/overscroll/overzine/issues"
+  },
+  "homepage": "https://github.com/overscroll/overzine#readme"
 }
