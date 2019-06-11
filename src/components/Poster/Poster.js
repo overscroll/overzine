@@ -1,4 +1,5 @@
 import React from 'react';
+import uuidv4 from 'uuid/v4';
 
 const hexToRgbA = ( hex, a ) =>  {
   var c;
@@ -67,15 +68,16 @@ const colorMatrix = (color1, color2) => {
     return value;
 }
 
-export default function Opener({ content: { id, headline, kicker, alignment, background, backgroundEffect, backgroundColor, backgroundColor2, colorContrast, imageColor, imageColor2, image, imageEffect }}) {
-  id = new Date().getTime();
+export default function Opener({ content: { id, headline, kicker, alignment, background, backgroundEffect, backgroundColor, backgroundColor2, colorContrast, colorText, imageColor, imageColor2, image, imageEffect }}) {
+  id = uuidv4();
   imageEffect = (['duotone', 'solid',].includes(imageEffect) ) ? imageEffect : 'solid';
   backgroundEffect = (['gradient', 'duotone', 'duotone-hard', 'solid'].includes(backgroundEffect) ) ? backgroundEffect : 'solid';
   background = ( 'zine1' === background ) ? '/images/pattern/zine1b.jpg' : background;
-
+  colorText = colorText || "#000000";
+  
   var backgroundFilter = 
   ( <filter id="background-filter"> 
-      <feComponentTransfer color-interpolation-filters="sRGB">
+      <feComponentTransfer colorInterpolationFilters="sRGB">
         <feFuncR type="linear" slope="1"></feFuncR>
         <feFuncG type="linear" slope="1"></feFuncG>
         <feFuncB type="linear" slope="1"></feFuncB>
@@ -84,7 +86,7 @@ export default function Opener({ content: { id, headline, kicker, alignment, bac
 
   var imageFilter = 
   ( <filter id="image-filter"> 
-      <feComponentTransfer color-interpolation-filters="sRGB">
+      <feComponentTransfer colorInterpolationFilters="sRGB">
         <feFuncR type="linear" slope="1"></feFuncR>
         <feFuncG type="linear" slope="1"></feFuncG>
         <feFuncB type="linear" slope="1"></feFuncB>
@@ -145,7 +147,7 @@ export default function Opener({ content: { id, headline, kicker, alignment, bac
   const imageName = `opener-image-${id}`;
   return (
     <div className={`overzine-opener overzine-opener--background-${backgroundEffect} overzine-opener--image-${imageEffect} `}>
-      <svg>
+      <svg className={`overzine-opener__svg`}>
         <defs>
           {backgroundFilter}
           {imageFilter}
@@ -155,11 +157,11 @@ export default function Opener({ content: { id, headline, kicker, alignment, bac
           </radialGradient> 
 
           <pattern id={backgroundImageName} patternUnits="userSpaceOnUse" width="100%" height="100%">
-            <image xlinkHref={background} x="0" y="0" filter="url(#background-filter)" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" externalresourcesrequired="true"></image>
+            <image xlinkHref={background} x="0" y="0" filter="url(#background-filter)" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" externalResourcesRequired="true"></image>
           </pattern>
 
           <pattern id={imageName} patternUnits="userSpaceOnUse" width="100%" height="100%">
-            <image xlinkHref={image} x="0" y="0" filter="url(#image-filter)" width="100%" height="100%" preserveAspectRatio="xMaxYMax meet" externalresourcesrequired="true"></image>
+            <image xlinkHref={image} x="0" y="0" filter="url(#image-filter)" width="100%" height="100%" preserveAspectRatio="xMaxYMax meet" externalResourcesRequired="true"></image>
           </pattern>
         </defs>
         <rect fill={backgroundColor} x="0" y="0" width="100%" height="100%"></rect>
@@ -172,10 +174,19 @@ export default function Opener({ content: { id, headline, kicker, alignment, bac
 
 
       <div className={`overzine-opener__text overzine-opener__text-${alignment}`}>
-        <sub className="overzine-opener__kicker" style={{ color: colorContrast }}>Backkround: {backgroundEffect} Image: {imageEffect} </sub>
-        <h3 className="overzine-opener__headline">{headline } </h3>
+        <sub className="overzine-opener__kicker" style={{ color: colorContrast }}>{kicker}</sub>
+        <h3 className="overzine-opener__headline"  style={{ color: colorText }}>{headline}</h3>
       </div>
-      <a href="#void" className="scroll" style={{ backgroundColor: colorContrast }}></a>              
+
+      <svg className="overzine-opener__swipeup" width="79px" height="33px" viewBox="0 0 79 33" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+      <g id="arrow" stroke="none" fill="none" fill-rule="evenodd">
+            <polyline
+              id="Path-2"
+              transform="translate(36.750000, 11.000000) scale(-0.5, 0.5) rotate(-180.000000) translate(-36.750000, -11.000000) "
+              stroke={colorContrast} strokeWidth="5" points="0 0 35.5 22 73.5 1.5"
+            />
+      </g>
+    </svg>
     </div>
   );
 }
