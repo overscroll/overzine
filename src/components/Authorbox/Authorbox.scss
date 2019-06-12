@@ -1,0 +1,65 @@
+.authors{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+    display: flex;
+    flex-direction:row;
+    line-height: 28px;
+    padding-bottom: 20px;
+    &__item {
+        flex:1 1 auto;
+        margin:5px;  /* and that, will result in a 10px gap */
+        width:100%;
+        background: #F8F8F8;
+        padding:20px;
+    }
+    &__headline {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    &__image {
+        width:120px;
+        border-radius: 50%;
+        float:left;
+        margin:0 15px 0 0;
+    }
+    &__name {
+        font-weight: bold;
+    }
+    &__follow {
+        margin-top: 10px;
+        color:#11ADFA;
+        display: inline-block;
+        padding: 2px 12px 0px 36px;
+        font-weight: bold;
+        font-size: 14px;
+        border: 1px solid #11ADFA;
+        border-radius: 5px;
+        background-image: url('/images/twitter.svg');
+        background-size: 20px 15px;
+        background-repeat: no-repeat;
+        background-position: 8px 7px;
+        text-decoration: none;
+    }
+
+    @include mq(desktop) {
+        width:calc(100%);
+        &__item {
+            width:auto;
+        }
+        display: block;
+        &__image {
+            width:80px;
+        }
+    }
+    @include mq(mobile) {
+        &__item {
+            width:auto;
+        }
+        display: block;
+        &__image {
+            width:80px;
+        }
+    }
+}
+

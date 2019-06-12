@@ -1,113 +1,90 @@
-body {
-    .overzine-opener {
-        background-color: #E9E9E9;
-        width: 500px;
-        height: 700px;
+article {
+
+    @include mq(desktop) {
+        min-width: 1200px;
         position: relative;
-
-        svg {
-            width: 100%;
-            height: 100%;
+        @include mq(hd) {
+            padding-left: calc(calc(100%/2) + -760px);
         }
-        &__headline {
-            color:#000;
-        }
-
-        &__layer1 { display: block; position: absolute; width: 100%; height: 100%; }
-        &__layer2 { display: block; position: absolute; width: 100%; height: 100%; }
-        &__layer3 { display: block; position: absolute; width: 100%; height: 100%; }
-
-        &__image { position: absolute; right: 0; bottom: 0; z-index: 5; width: 100%; }
-        &__text {
-            display: block;
-            position: absolute;
-            width: 100%;
-            z-index:10;
-            right: 25px;
-            bottom: 0px;
-            left: 35px;
-            top: 15%;
-            justify-content: start;
-        }
-        &__headline {
-            z-index: 9;
-            margin-top: 15px;
-            font-family: 'Neutral';
-            font-weight: 600;
-            line-height: 120%;
-            font-size: 2.2em;
-        }
-        &__kicker {
-            z-index: 9;
-            font-size: 1.6rem;
-            font-weight: 600;
-            line-height: 100%;
-            text-transform: uppercase;
-        }
-        &--background-gradient {
-            .overzine-opener__layer2{
-                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eaeaea+0,c9c9c9+100&0.99+0,0.02+100 */
-                //background: -webkit-radial-gradient(60% bottom, ellipse cover, rgba(155, 155, 155, 0.35) 0%,rgba(155,155,155,0.02) 100%); /* Chrome10-25,Safari5.1-6 */
-            }
-        }
-
-
-
-        /* THEME: ZINE1 */
-        &--background-zine1 {
-            .overzine-opener__layer1{
-                display: block;
-                width: 100%;
-                height: 100%;
-                mix-blend-mode: darken;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index:3;
-            }
-            
-            .overzine-opener__layer2{
-                background: url('/images/pattern/zine1b.jpg');
-                background-size: 100%;
-                z-index:1;
-            }
-            .overzine-opener__layer3 {
-                display: block;
-                width: 100%;
-                height: 100%;
-                mix-blend-mode: lighten;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index:4;
-            }
-            
-        }
-
-        &--image-pngduotone {
-
-            .overzine-opener__imagelayer1{
-                display: block; position: absolute; width: 100%; height: 100%;
-                z-index: 4;
-            }
-            .overzine-opener__imagelayer2{
-                display: block; position: absolute; width: 100%; height: 100%;
-                z-index: 6;
-                content: '';
-                display: block;
-                width: 100%;
-                height: 100%;
-                mix-blend-mode: screen;
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
-
-            .overzine-opener__image{
-                mix-blend-mode: multiply;
-                -webkit-filter: grayscale(100%) contrast(1.0);
-            }
-        }
-
     }
+    @include mq(mobile) {
+        perspective: 1000px;
+        background: #fff;
+    
+        overflow: scroll;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        transform-style: preserve-3d;
+        transition: 0.3s ease-in-out;
+        -webkit-overflow-scrolling: touch; 
+
+        .scrollheading {
+            position: sticky;
+            position: -webkit-sticky;
+            width: 100%;
+            height:50px;
+            margin-top: -50px;
+            z-index: 1;
+            top: 0;
+            background:#fefefe;
+        }
+    }
+
+    .content {
+        @include mq(desktop) {
+            display: flex;
+        }
+    }
+
+    .content__inner {
+
+        @include mq(desktop) {
+            width: 100%;
+            padding: 40px 40px 40px 0;
+            min-width: 400px;
+            max-width: 800px;
+            font-size: 18px;
+            letter-spacing: 0;
+            line-height: 27px;
+        }
+        @include mq(mobile) {
+            margin: 25px;
+        }
+        
+        .meta {
+            font-size: 16px;
+            letter-spacing: 1.4px;
+            line-height: 27px;
+            text-transform: uppercase; 
+
+            .metaDate:after {
+                content: " • ";
+                margin: 0px 20px;
+            }
+
+        }
+        .text { 
+            margin: 20px 0;
+        }  
+        p.intro { font-weight:500; }
+        p.intro::after{
+            content: " ";
+            width: 61px;
+            height: 7px;
+            background-color: #000;
+            display: block;
+            border-radius: 3px;
+            margin-top: 16px;
+        }
+        a {
+            color:inherit;
+            text-decoration: none;
+            border-bottom: 1px solid #fff;   
+            box-shadow: inset 0 -6px 0 #fff;
+           
+        }
+    }
+    &.stopAnimation{  transition: none; }    
+
 }

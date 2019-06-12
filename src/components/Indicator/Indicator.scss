@@ -1,0 +1,92 @@
+
+.indicator{
+    background: rgba(0,0,0,0.21);
+    position: absolute;
+    z-index: 5;
+    width: 102px;
+    height: 18px;
+    border-radius: 18px;
+    top: 16px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.indicator-wrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 7px;
+    left: 7px;
+    overflow: hidden;
+}
+
+.indicator-bar {
+    display: block;
+    height: 100%;
+    width: 200%;
+    position: relative;
+    margin-left: -50%;
+} 
+.indicator-bar:before {
+    z-index: 1;
+    background-repeat: repeat-x;
+    opacity: .2
+}
+.indicator-bar:after {
+    z-index: 2;
+    background-repeat: no-repeat
+}
+.indicator-bar:before, .indicator-bar:after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 12px 12px'%3E%3Ccircle fill='%23FFF' class='cls-1' cx='6px' cy='6px' r='2.5px'/%3E%3C/svg%3E");    
+    background-size: 12px 12px;
+    background-position: 50%;
+}
+
+
+
+.indicator[data-index="0"] .indicator-bar {
+    -webkit-transform: translateX(-36px);
+    transform: translateX(-36px)
+}
+
+.indicator[data-index="1"] .indicator-bar {
+    -webkit-transform: translateX(-24px);
+    transform: translateX(-24px)
+}
+
+.indicator[data-index="2"] .indicator-bar {
+    -webkit-transform: translateX(-12px);
+    transform: translateX(-12px)
+}
+
+.indicator[data-index="3"] .indicator-bar {
+    -webkit-transform: translateX(0);
+    transform: translateX(0)
+}
+
+.indicator[data-index="4"] .indicator-bar {
+    -webkit-transform: translateX(12px);
+    transform: translateX(12px)
+}
+
+.indicator[data-index="5"] .indicator-bar {
+    -webkit-transform: translateX(24px);
+    transform: translateX(24px)
+}
+
+.indicator[data-index="6"] .indicator-bar {
+    -webkit-transform: translateX(36px);
+    transform: translateX(36px)
+}
+.indicator[data-index="7"] .indicator-bar {
+    -webkit-transform: translateX(48px);
+    transform: translateX(48px)
+}
+
+
