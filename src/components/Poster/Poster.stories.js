@@ -29,7 +29,7 @@ stories
     )
   .add('all-properties-knobs', () =>
     <Poster content={{ 
-    headline: text('headline', 'Headline!', 'text'),
+    headline: text('headline', 'Change Me!', 'text'),
     kicker: text('kicker', 'Kicker', 'text'),
     alignment: select('alignment', ['left', 'center'], 'left', 'text'),
     background: text('background', '/images/pattern/zine1b.jpg', 'background'),
@@ -50,7 +50,7 @@ stories
     }} {...actions} />)
   .add('pngduotone-on-zine', () =>
     <Poster content={{ ...article,
-    headline: select,
+    headline: 'select',
     background: 'zine1',
     backgroundEffect: 'duotone-hard',
     backgroundColor: color('BackgroundColor', '#FEE3DE', ''),

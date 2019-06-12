@@ -1,18 +1,147 @@
 import React from 'react';
 import uuidv4 from 'uuid/v4';
 
-const hexToRgbA = ( hex, a ) =>  {
-  var c;
-  if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-      c= hex.substring(1).split('');
-      if(c.length== 3){
-          c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-      }
-      c= '0x'+c.join('');
-      return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+', ' + a +')';
+const Poster = (props) => {
+  const { content } = props;
+
+  const id = uuidv4();
+  const headline = content.headline || "The Extraordinary Journey of this Headline";
+  const kicker = content.kicker || "Kicker";
+  const colorContrast = content.colorContrast|| '#F46772';
+  const colorText = content.colorText || "#000000";
+  const alignment = content.alignment || "left";
+
+  // Foreground Image
+  const image = content.image || null;
+  const imageEffect = (['duotone', 'solid',].includes(content.imageEffect) ) ? content.imageEffect : 'solid';
+  const imageColor = content.imageColor || null;
+  const imageColor2 = content.imageColor2 || null;
+
+  // Background Image
+  const background = ( 'zine1' === content.background ) ? '/images/pattern/zine1b.jpg' : content.background;
+  const backgroundEffect = (['gradient', 'duotone', 'duotone-hard', 'solid'].includes(content.backgroundEffect) ) ? content.backgroundEffect : 'solid';
+  const backgroundColor = content.backgroundColor || "#96D7CD";
+  const backgroundColor2 = content.backgroundColor2 || backgroundColor;
+  const backgroundImageName = `opener-backgroundimage-${id}`;
+  const imageName = `opener-image-${id}`;
+
+  return (
+    <div className={`overzine-opener overzine-opener--background-${backgroundEffect} overzine-opener--image-${imageEffect} `}>
+      <svg className={`overzine-opener__svg`}>
+        <defs>
+          { SvgBackgroundFilter(backgroundEffect, backgroundColor, backgroundColor2) }
+          { SvgImageFilter(imageEffect, imageColor, imageColor2) }
+          <radialGradient id="rgrad" cx="50%" cy="80%" r="75%" > 
+            <stop offset="0%" style={ {stopColor: 'rgb(156,154,156)', stopOpacity: 0.25} } />
+            <stop offset="100%" style={ {stopColor: 'rgb(156,154,156)', stopOpacity: 0.02} } />
+          </radialGradient> 
+
+          <pattern id={backgroundImageName} patternUnits="userSpaceOnUse" width="100%" height="100%">
+            <image xlinkHref={background} x="0" y="0" filter="url(#background-filter)" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" externalResourcesRequired="true"></image>
+          </pattern>
+
+          <pattern id={imageName} patternUnits="userSpaceOnUse" width="100%" height="100%">
+            <image xlinkHref={image} x="0" y="0" filter="url(#image-filter)" width="100%" height="100%" preserveAspectRatio="xMaxYMax meet" externalResourcesRequired="true"></image>
+          </pattern>
+        </defs>
+        <rect fill={backgroundColor} x="0" y="0" width="100%" height="100%"></rect>
+        <rect fill={'url(#rgrad)'} x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMaxYMax slice"></rect>
+        <rect fill={`url(#${backgroundImageName})`} x="0" y="0" width="100%" height="100%"  preserveAspectRatio="xMaxYMax slice"></rect>
+        <rect fill={`url(#${imageName})`} x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMaxYMax slice"></rect>
+      </svg>
+
+      <div className={`overzine-opener__text overzine-opener__text-${alignment}`}>
+        <sub className="overzine-opener__kicker" style={{ color: colorContrast }}>{kicker}</sub>
+        <h3 className="overzine-opener__headline"  style={{ color: colorText }}>{headline}</h3>
+      </div>
+
+      <svg className="overzine-opener__swipeup" width="79px" height="33px" viewBox="0 0 79 33" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+      <g id="arrow" stroke="none" fill="none" fillRule="evenodd">
+            <polyline
+              id="Path-2"
+              transform="translate(36.750000, 11.000000) scale(-0.5, 0.5) rotate(-180.000000) translate(-36.750000, -11.000000) "
+              stroke={colorContrast} strokeWidth="5" points="0 0 35.5 22 73.5 1.5"
+            />
+      </g>
+    </svg>
+    </div>
+  );
+};
+
+// Help Function
+
+const SvgBackgroundFilter = (backgroundEffect, backgroundColor, backgroundColor2) => {
+  switch (backgroundEffect) {
+    case 'duotone': return (
+      <filter id="background-filter">
+        <feComponentTransfer colorInterpolationFilters="sRGB">
+        <feFuncR type="linear" slope="1" intercept="0"></feFuncR>
+        <feFuncG type="linear" slope="1" intercept="0"></feFuncG>
+        <feFuncB type="linear" slope="1" intercept="0"></feFuncB>
+      </feComponentTransfer>
+      <feComponentTransfer colorInterpolationFilters="sRGB">
+        <feFuncR type="linear" slope="1"></feFuncR>
+        <feFuncG type="linear" slope="1"></feFuncG>
+        <feFuncB type="linear" slope="1"></feFuncB>
+      </feComponentTransfer>
+        <feColorMatrix id="duotone-matrix" values={colorMatrix(colorArray(backgroundColor),colorArray(backgroundColor2))} type="matrix" colorInterpolationFilters="sRGB"></feColorMatrix>          
+      </filter>);
+
+    case 'duotone-hard': return (
+      <filter id="background-filter">
+        <feComponentTransfer colorInterpolationFilters="sRGB">
+          <feFuncR type="linear" slope="3" intercept="-1"></feFuncR>
+          <feFuncG type="linear" slope="3" intercept="-1"></feFuncG>
+          <feFuncB type="linear" slope="3" intercept="-1"></feFuncB>
+        </feComponentTransfer>
+        <feComponentTransfer colorInterpolationFilters="sRGB">
+          <feFuncR type="linear" slope="2"></feFuncR>
+          <feFuncG type="linear" slope="2"></feFuncG>
+          <feFuncB type="linear" slope="2"></feFuncB>
+        </feComponentTransfer>
+        <feColorMatrix id="duotone-matrix" values={colorMatrix(colorArray(backgroundColor),colorArray(backgroundColor2))} type="matrix" colorInterpolationFilters="sRGB"></feColorMatrix>          
+      </filter>);
+
+    default: return (
+      <filter id="background-filter">
+        <feComponentTransfer colorInterpolationFilters="sRGB">
+          <feFuncR type="linear" slope="1"></feFuncR>
+          <feFuncG type="linear" slope="1"></feFuncG>
+          <feFuncB type="linear" slope="1"></feFuncB>
+        </feComponentTransfer>
+      </filter>);
   }
-  throw new Error('Bad Hex');
-}
+};
+
+const SvgImageFilter = (imageEffect, imageColor, imageColor2) => {
+  switch (imageEffect) {
+    case 'duotone': return ( 
+      <filter id='image-filter'>
+        <feComponentTransfer colorInterpolationFilters='sRGB'>
+          <feFuncR type="linear" slope="1" intercept="0"></feFuncR>
+          <feFuncG type="linear" slope="1" intercept="0"></feFuncG>
+          <feFuncB type="linear" slope="1" intercept="0"></feFuncB>
+        </feComponentTransfer>
+        <feComponentTransfer colorInterpolationFilters='sRGB'>
+          <feFuncR type="linear" slope="1"></feFuncR>
+          <feFuncG type="linear" slope="1"></feFuncG>
+          <feFuncB type="linear" slope="1"></feFuncB>
+        </feComponentTransfer>
+        <feColorMatrix id="duotone-matrix" values={colorMatrix(colorArray(imageColor),colorArray(imageColor2))} type="matrix" colorInterpolationFilters="sRGB"></feColorMatrix>          
+      </filter>);
+
+    default: return (
+      <filter id="image-filter">
+        <feComponentTransfer colorInterpolationFilters="sRGB">
+          <feFuncR type="linear" slope="1"></feFuncR>
+          <feFuncG type="linear" slope="1"></feFuncG>
+          <feFuncB type="linear" slope="1"></feFuncB>
+        </feComponentTransfer>
+      </filter>);
+  }
+};
+
+
 // return array of [r,g,b,a] from any valid color. if failed returns undefined
 const colorArray = (color) => {
   if (!color)
@@ -67,145 +196,5 @@ const colorMatrix = (color1, color2) => {
     value = value.concat([0, 0, 0, 1, 0]);
     return value;
 };
-
-const SvgBackgroundFilter = (backgroundEffect, backgroundColor, backgroundColor2) => {
-  switch (backgroundEffect) {
-    case "duotone": return (
-      <filter id="background-filter">
-        <feComponentTransfer colorInterpolationFilters="sRGB">
-        <feFuncR type="linear" slope="1" intercept="0"></feFuncR>
-        <feFuncG type="linear" slope="1" intercept="0"></feFuncG>
-        <feFuncB type="linear" slope="1" intercept="0"></feFuncB>
-      </feComponentTransfer>
-      <feComponentTransfer colorInterpolationFilters="sRGB">
-        <feFuncR type="linear" slope="1"></feFuncR>
-        <feFuncG type="linear" slope="1"></feFuncG>
-        <feFuncB type="linear" slope="1"></feFuncB>
-      </feComponentTransfer>
-        <feColorMatrix id="duotone-matrix" values={colorMatrix(colorArray(backgroundColor),colorArray(backgroundColor2))} type="matrix" colorInterpolationFilters="sRGB"></feColorMatrix>          
-      </filter>);
-
-    case "duotone-hard": return (
-      <filter id="background-filter">
-        <feComponentTransfer colorInterpolationFilters="sRGB">
-          <feFuncR type="linear" slope="3" intercept="-1"></feFuncR>
-          <feFuncG type="linear" slope="3" intercept="-1"></feFuncG>
-          <feFuncB type="linear" slope="3" intercept="-1"></feFuncB>
-        </feComponentTransfer>
-        <feComponentTransfer colorInterpolationFilters="sRGB">
-          <feFuncR type="linear" slope="2"></feFuncR>
-          <feFuncG type="linear" slope="2"></feFuncG>
-          <feFuncB type="linear" slope="2"></feFuncB>
-        </feComponentTransfer>
-        <feColorMatrix id="duotone-matrix" values={colorMatrix(colorArray(backgroundColor),colorArray(backgroundColor2))} type="matrix" colorInterpolationFilters="sRGB"></feColorMatrix>          
-      </filter>);
-
-    default: return ( 
-      <filter id="background-filter">
-        <feComponentTransfer colorInterpolationFilters="sRGB">
-          <feFuncR type="linear" slope="1"></feFuncR>
-          <feFuncG type="linear" slope="1"></feFuncG>
-          <feFuncB type="linear" slope="1"></feFuncB>
-        </feComponentTransfer>
-      </filter>);
-  }
-};
-
-
-const SvgImageFilter = (imageEffect, imageColor, imageColor2) => {
-  switch (imageEffect) {
-    case "duotone": return ( 
-      <filter id="image-filter">
-        <feComponentTransfer colorInterpolationFilters="sRGB">
-          <feFuncR type="linear" slope="1" intercept="0"></feFuncR>
-          <feFuncG type="linear" slope="1" intercept="0"></feFuncG>
-          <feFuncB type="linear" slope="1" intercept="0"></feFuncB>
-        </feComponentTransfer>
-        <feComponentTransfer colorInterpolationFilters="sRGB">
-          <feFuncR type="linear" slope="1"></feFuncR>
-          <feFuncG type="linear" slope="1"></feFuncG>
-          <feFuncB type="linear" slope="1"></feFuncB>
-        </feComponentTransfer>
-        <feColorMatrix id="duotone-matrix" values={colorMatrix(colorArray(imageColor),colorArray(imageColor2))} type="matrix" colorInterpolationFilters="sRGB"></feColorMatrix>          
-      </filter> );
-
-    default: return ( 
-      <filter id="image-filter"> 
-        <feComponentTransfer colorInterpolationFilters="sRGB">
-          <feFuncR type="linear" slope="1"></feFuncR>
-          <feFuncG type="linear" slope="1"></feFuncG>
-          <feFuncB type="linear" slope="1"></feFuncB>
-        </feComponentTransfer>
-      </filter>);
-  }
-  
-};
-
-const Poster = (props) => {
-  var { content } = props;
-
-  const id = uuidv4();
-  const headline = content.headline || "The Extraordinary Journey of this Headline";
-  const kicker = content.kicker || "Kicker";
-  const colorContrast = content.colorContrast|| '#F46772';
-  const colorText = content.colorText || "#000000";
-  const alignment = content.alignment || "left";
-
-  // Foreground Image
-  const image = content.image || null;
-  const imageEffect = (['duotone', 'solid',].includes(content.imageEffect) ) ? content.imageEffect : 'solid';
-  const imageColor = content.imageColor || null;
-  const imageColor2 = content.imageColor2 || null;
-
-  // Background Image
-  const background = ( 'zine1' === content.background ) ? '/images/pattern/zine1b.jpg' : content.background;
-  const backgroundEffect = (['gradient', 'duotone', 'duotone-hard', 'solid'].includes(content.backgroundEffect) ) ? content.backgroundEffect : 'solid';
-  const backgroundColor = content.backgroundColor || "#96D7CD";
-  const backgroundColor2 = content.backgroundColor2 || backgroundColor;
-  const backgroundImageName = `opener-backgroundimage-${id}`;
-  const imageName = `opener-image-${id}`;
-
-  return (
-    <div className={`overzine-opener overzine-opener--background-${backgroundEffect} overzine-opener--image-${imageEffect} `}>
-      <svg className={`overzine-opener__svg`}>
-        <defs>
-          { SvgBackgroundFilter(backgroundEffect, backgroundColor, backgroundColor2) }
-          { SvgImageFilter(imageEffect, imageColor, imageColor2) }
-          <radialGradient id="rgrad" cx="50%" cy="80%" r="75%" > 
-            <stop offset="0%" style={ {stopColor: 'rgb(156,154,156)', stopOpacity: 0.25} } />
-            <stop offset="100%" style={ {stopColor: 'rgb(156,154,156)', stopOpacity: 0.02} } />
-          </radialGradient> 
-
-          <pattern id={backgroundImageName} patternUnits="userSpaceOnUse" width="100%" height="100%">
-            <image xlinkHref={background} x="0" y="0" filter="url(#background-filter)" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" externalResourcesRequired="true"></image>
-          </pattern>
-
-          <pattern id={imageName} patternUnits="userSpaceOnUse" width="100%" height="100%">
-            <image xlinkHref={image} x="0" y="0" filter="url(#image-filter)" width="100%" height="100%" preserveAspectRatio="xMaxYMax meet" externalResourcesRequired="true"></image>
-          </pattern>
-        </defs>
-        <rect fill={backgroundColor} x="0" y="0" width="100%" height="100%"></rect>
-        <rect fill={`url(#rgrad)`} x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMaxYMax slice"></rect>
-        <rect fill={`url(#${backgroundImageName})`} x="0" y="0" width="100%" height="100%"  preserveAspectRatio="xMaxYMax slice"></rect>
-        <rect fill={`url(#${imageName})`} x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMaxYMax slice"></rect>
-      </svg>
-
-      <div className={`overzine-opener__text overzine-opener__text-${alignment}`}>
-        <sub className="overzine-opener__kicker" style={{ color: colorContrast }}>{kicker}</sub>
-        <h3 className="overzine-opener__headline"  style={{ color: colorText }}>{headline}</h3>
-      </div>
-
-      <svg className="overzine-opener__swipeup" width="79px" height="33px" viewBox="0 0 79 33" version="1.1" xmlns="http://www.w3.org/2000/svg" >
-      <g id="arrow" stroke="none" fill="none" fillRule="evenodd">
-            <polyline
-              id="Path-2"
-              transform="translate(36.750000, 11.000000) scale(-0.5, 0.5) rotate(-180.000000) translate(-36.750000, -11.000000) "
-              stroke={colorContrast} strokeWidth="5" points="0 0 35.5 22 73.5 1.5"
-            />
-      </g>
-    </svg>
-    </div>
-  );
-}
 
 export default Poster;
