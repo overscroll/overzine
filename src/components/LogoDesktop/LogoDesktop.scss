@@ -1,0 +1,15 @@
+.desktop {
+    .logoDesktop{
+        background-color: #E5E5E5;
+        -webkit-mask:  url('https://assets.overscroll.com/website/overscroll-90deg.svg') no-repeat 0 0/52px 500px;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        width:50px;
+        height:500px;
+        z-index:10;
+        @include mq(hd) {
+            margin-left: calc(calc(100%/2) + -760px);
+        }
+    }
+}

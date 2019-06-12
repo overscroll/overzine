@@ -41,6 +41,7 @@ $content-width: 660px;
 $global-mq-breakpoints: (
   mobile: 'screen and (max-width: 48em)', // until 768px (iPad)
   desktop: 'screen and (min-width: 48.0625em)', // 769px and larger
+  hd: 'screen and (min-width: 1500px)', // 1500px and larger
 );
 
 @mixin mq($mq-name, $breakpoints: $global-mq-breakpoints) {
