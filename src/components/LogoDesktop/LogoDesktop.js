@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom';
 
 class LogoDesktop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clip: 'rect(auto, auto, auto, auto)'
-    }
-    this.clipLogo = this.clipLogo.bind(this); 
+      clip: 'rect(auto, auto, auto, auto)',
+    };
+    this.clipLogo = this.clipLogo.bind(this);
   }
 
   clipLogo() {
@@ -32,7 +33,11 @@ class LogoDesktop extends React.Component {
     const { props } = this;
  
     return (
-            <div className="logoDesktop" style={{ backgroundColor: props.color, clip: this.state.clip }}></div>
+        <div>
+          <Link to="/frontpage">
+        <div className="logoDesktop" style={{ backgroundColor: props.color, clip: this.state.clip }}></div>
+        </Link>
+        </div>
     );
   }
 }

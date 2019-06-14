@@ -8,6 +8,8 @@ import Authorbox from '../Authorbox/Authorbox';
 class Article extends React.Component {
   constructor (props) {
     super(props);
+    console.log(this.context);
+    this.checkScrolling = this.checkScrolling.bind(this);
   }
 
   checkScrolling(e){
@@ -35,11 +37,19 @@ class Article extends React.Component {
       ReactDOM.findDOMNode(this).addEventListener("transitionEnd", this.props.onAnimationComplete);
       ReactDOM.findDOMNode(this).addEventListener("webkitTransitionEnd", this.props.onAnimationComplete);
 
-      window.addEventListener("scroll", this.checkScrolling.bind(this));
-      window.addEventListener("load", this.checkScrolling.bind(this));
-      window.addEventListener("resize", this.checkScrolling.bind(this));
+      window.addEventListener("scroll", this.checkScrolling);
+      window.addEventListener("load", this.checkScrolling);
+      window.addEventListener("resize", this.checkScrolling);
   }
 
+  componentWillUnmount() {
+    ReactDOM.findDOMNode(this).removeEventListener("transitionEnd", this.props.onAnimationComplete);
+    ReactDOM.findDOMNode(this).removeEventListener("webkitTransitionEnd", this.props.onAnimationComplete);
+
+    window.removeEventListener('scroll', this.checkScrolling);
+    window.removeEventListener('load', this.checkScrolling);
+    window.removeEventListener('resize', this.checkScrolling);
+  }
   render(){
 
     // Content Variables
@@ -72,7 +82,7 @@ class Article extends React.Component {
 
     return (  
       <article className={articleClassName} style={articleStyle} >
-          <LogoDesktop mobile={mobile} color={ props.data.colorContrast} />
+      <LogoDesktop mobile={mobile} color={ props.data.colorContrast} />
           <Poster content={posterProps}/>
           <div className="scrollheading" style={{backgroundColor:props.data.colorBackground}}></div>
           <section className="content">

@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, boolean, number, color } from '@storybook/addon-knobs';
+import StoryRouter from 'storybook-react-router';
+import Page from './Page';
 
-import Frontpage from './Frontpage';
-
-const stories = storiesOf('Frontpage', module);
+const stories = storiesOf('Page', module);
+stories.addDecorator(StoryRouter());
 stories.addDecorator(withKnobs);
-
 stories.add('standard', () =>
-    <Frontpage headline='Never Stop Scrolling' />);
+    <Page headline='Never Stop Scrolling' />);
