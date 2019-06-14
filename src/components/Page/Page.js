@@ -13,7 +13,7 @@ export default function Page({ headline, subline, background }) {
         const headlines = headline;
         headline = (<Typist  corsor={{show: true,  blink: true, hideWhenDone: true }}>
             <Typist.Delay ms={1000} />    
-            {
+            {   
                 headlines.map((text) => {
                     console.log(text);
                     return (
