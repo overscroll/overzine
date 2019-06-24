@@ -37,7 +37,7 @@ export default function Page({ headline, subline, background }) {
                 </h2>
                 <p className={`overzine-frontpage__subline overzine-frontpage__geviert `}>{subline}</p> 
 
-                <p className={`overzine-frontpage__intro`}><span className={`overzine-frontpage__emoji`}>✌️</span> Yes, endlich gelauncht. Hier blogge ich ab sofort über das Leben mit dem Smartphone und alles was damit zu tun hat!  <Link to="/1/hello" >Erfahre mehr</Link></p>
+                <p className={`overzine-frontpage__intro`}><span className={`overzine-frontpage__emoji`}>✌️</span>Endlich gelauncht: Hier berichten wir über das Leben mit dem Smartphone und alles was damit zu tun hat!  <Link to="/1/hello" >Erfahre mehr</Link></p>
             </div>
         </div>
     );

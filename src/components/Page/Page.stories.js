@@ -9,3 +9,5 @@ stories.addDecorator(StoryRouter());
 stories.addDecorator(withKnobs);
 stories.add('standard', () =>
     <Page headline='Never Stop Scrolling' />);
+stories.add('with animated headline', () =>
+    <Page headline='Never Stop Scrolling' />);

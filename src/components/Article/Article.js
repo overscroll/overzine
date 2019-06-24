@@ -53,9 +53,9 @@ class Article extends React.Component {
   render(){
 
     // Content Variables
-    const content = this.props.data;
-    const headline = content.headline || 'Scrolling on the Dancefloor';
+    const content = this.props.data || {};
     const kicker = content.kicker || '#itsover';
+    const headline = content.headline || 'Scrolling on the Dancefloor';
     const colorText = content.colorText || '#FBDEDB';
     const colorContrast = content.colorContrast || '#E33BB2';
     const backgroundColor = content.colorBackground || '#FBDEDB';
@@ -63,12 +63,13 @@ class Article extends React.Component {
 
     // Style Variables
     const props = this.props;
-    const width = props.style.width || 375;
-    const height = props.style.height ||  667;
-    const left = props.style.left || 0;
-    const opacity = props.style.opacity || 1;
-    const transform = props.style.transform || 'translateX(0px) rotateY(0rad);';
-    const transformOrigin = props.style.transformOrigin || 'left bottom 0px;';
+    const style = this.props.style || {};
+    const width = style.width || 375;
+    const height = style.height ||  667;
+    const left = style.left || 0;
+    const opacity = style.opacity || 1;
+    const transform = style.transform || 'translateX(0px) rotateY(0rad);';
+    const transformOrigin = style.transformOrigin || 'left bottom 0px;';
     const color = colorText;
 
     // Helper Variables

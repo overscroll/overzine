@@ -7,13 +7,19 @@
     height: 80%;
     min-height: 700px;
     position: relative;
+    letter-spacing: 0.1px;
+
+    a {
+        color:#0179FE;
+        font-weight: bold;
+    }
 
     &__headline {
         font-size: $l-size;
         line-height: $s-size*3.5;
     }
     &__subline {
-        font-weight: bold;
+        font-weight: 500;
         letter-spacing: 0.1rem;
         font-size: $s-size;
         line-height: $s-size*3.5;
