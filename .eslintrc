@@ -1,5 +1,7 @@
 {
-  "extends": "airbnb-base",
+  "extends": [
+    "airbnb-base",
+    "plugin:react/recommended"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
@@ -10,14 +12,21 @@
     "workbox": true
   },
   "plugins": [
+    "react",
     "compat",
     "no-storage"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "no-console": "off",
     "no-shadow": "off",
     "no-param-reassign": "off",
     "import/no-extraneous-dependencies": "off",
+    "react/prop-types": "off",
     "comma-dangle": ["error", "always-multiline"],
     "linebreak-style": "off",
     "compat/compat": "off",
