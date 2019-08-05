@@ -1,22 +1,17 @@
 import React from 'react';
 
-const Authorbox = (props) => (
-  <div className="authors">
-    <div className="authors__item">
-        <h3 className="authors__headline">Über den Autor</h3>
-        <img className="authors__image" src="/images/authors/authors_tobias.jpg" />
-        <p className="authors__name">Tobias — @heytobey</p>
-        <p className="authors__description">Seine große Leidenschaft ist das Internet. Es dauerte zwar 28 Jahre, aber dann fing er endlich an zu bloggen. Endlich!</p>  
-        <a className="authors__follow" href="https://twitter.com/heytobey">follow</a>
+const Authorbox = (props) => {
+  const { kicker, date, name, imageUrl } = props;
+  const kickerElement = <a href='' >#{kicker}</a>;
+
+  return (
+  <div className="overzine-authorbox">
+    <div className="overzine-authorbox__item">
+        <img className="overzine-authorbox__image" src={imageUrl} />
+        <p className="overzine-authorbox__name">Von {name}</p>
+        <p className="overzine-authorbox__description">{date} — {kickerElement}</p>
     </div>
-    <div className="authors__item">
-        <h3 className="authors__headline">Folge uns auf Twitter</h3>
-        <img className="authors__image" src="/images/authors/authors_overscroll.jpg" />
-        <p className="authors__name">@overscroll</p>
-        <p className="authors__description">Wir sind der Blog fürs digitale Zeitgeschehen. Folge uns auf Twitter und verpasse nichts!</p>  
-        <a className="authors__follow" href="https://twitter.com/overscroll">follow </a>
-    </div>
-  </div>
-);
+  </div>);
+};
 
 export default Authorbox;

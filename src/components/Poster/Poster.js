@@ -20,8 +20,8 @@ const Poster = (props) => {
   // Background Image
   const background = ( 'zine1' === content.background ) ? '/images/pattern/zine1b.jpg' : content.background;
   const backgroundEffect = (['gradient', 'duotone', 'duotone-hard', 'solid'].includes(content.backgroundEffect) ) ? content.backgroundEffect : 'solid';
-  const backgroundColor = content.backgroundColor || "#96D7CD";
-  const backgroundColor2 = content.backgroundColor2 || backgroundColor;
+  const backgroundColor = content.backgroundColor || "rgb(156,154,156)";
+  const backgroundColor2 = content.backgroundColor2 || "rgb(156,154,156)";
   const backgroundImageName = `opener-backgroundimage-${id}`;
   const imageName = `opener-image-${id}`;
 
@@ -31,9 +31,10 @@ const Poster = (props) => {
         <defs>
           { SvgBackgroundFilter(backgroundEffect, backgroundColor, backgroundColor2) }
           { SvgImageFilter(imageEffect, imageColor, imageColor2) }
-          <radialGradient id="rgrad" cx="50%" cy="80%" r="75%" > 
-            <stop offset="0%" style={ {stopColor: 'rgb(156,154,156)', stopOpacity: 0.25} } />
-            <stop offset="100%" style={ {stopColor: 'rgb(156,154,156)', stopOpacity: 0.02} } />
+          <radialGradient id={`rgrad-${id}`} cx="50%" cy="80%" r="75%" > 
+          <stop offset="0%" style={ {stopColor: backgroundColor, stopOpacity: 0.25} } />
+          <stop offset="100%" style={ {stopColor: backgroundColor2, stopOpacity: 0.02} } />
+
           </radialGradient> 
 
           <pattern id={backgroundImageName} patternUnits="userSpaceOnUse" width="100%" height="100%">
@@ -45,7 +46,7 @@ const Poster = (props) => {
           </pattern>
         </defs>
         <rect fill={backgroundColor} x="0" y="0" width="100%" height="100%"></rect>
-        <rect fill={'url(#rgrad)'} x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMaxYMax slice"></rect>
+        <rect fill={`url(#rgrad-${id})`} x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMaxYMax slice"></rect>
         <rect fill={`url(#${backgroundImageName})`} x="0" y="0" width="100%" height="100%"  preserveAspectRatio="xMaxYMax slice"></rect>
         <rect fill={`url(#${imageName})`} x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMaxYMax slice"></rect>
       </svg>

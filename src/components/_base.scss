@@ -29,6 +29,7 @@
        url('/fonts/InterUi/Inter-ExtraBold.woff') format("woff");
 }
 
+
 // Colors
 // Spacing
 $s-size: 1.2rem;
@@ -61,14 +62,21 @@ $global-mq-breakpoints: (
 html {
     font-size: 62.5%;
 }
-  
+
 body {
   font-family: "Inter", Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-size: $m-size;
-  line-height: $m-size*2;
+  line-height: $m-size*2.1;
   background: #181818;
 }
 h1, h2, h3, h4, p {
 margin:0; padding:0;
+}
+figure {
+  padding: 0;
+  margin:0;
+}
+:root {
+  --box-bg-color: coral;
 }

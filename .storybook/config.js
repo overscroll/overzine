@@ -6,6 +6,7 @@ import '../src/index.css';
 import '../src/components/styles.scss';
 const req = require.context('../src', true, /.stories.js$/);
 
+
 addParameters({
   options: {
     theme: create({
@@ -18,6 +19,7 @@ addParameters({
     isToolshown: true,
   },
 });
+
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));

@@ -1,3 +1,35 @@
+.overzine-authorbox {
+  width:100%;
+  font-size: 14px;
+
+  &__image {
+    flex:1 1 auto;
+    margin-right:10px;
+    width:45px;
+    height:45px;
+    border-radius: 45px;
+    float:left;
+  }
+  &__name {
+    font-weight: 500;
+    margin:0px;
+    padding: 0px;
+  }
+  &__description {
+    opacity: 0.75;
+  }
+  &::after{
+    content: " ";
+    width: 61px;
+    height: 7px;
+    background-color: var(--contrast-color);
+    display: block;
+    border-radius: 3px;
+    margin-top: 16px;
+  }
+
+}
+
 .authors{
     width:100%;
     max-width:1100px;
